@@ -1,9 +1,9 @@
 import EventList from "../components/EventList";
-function AllEventsPage() {
+function AllEventsPage(props) {
   return (
     <section>
       <h1>Alle Events</h1>
-      <EventList></EventList>
+      <EventList addToCard={props.addToCard}></EventList>
     </section>
   );
 }
