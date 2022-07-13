@@ -26,6 +26,7 @@ function Event(props) {
           <Typography gutterBottom variant="h6" component="div">
             <LocationOnIcon></LocationOnIcon> {props.event.venue.name}
           </Typography>
+          //TODO: datum Formatieren
           <Typography gutterBottom variant="h6" component="div">
             | Starts: {props.event.startTime}
           </Typography>
