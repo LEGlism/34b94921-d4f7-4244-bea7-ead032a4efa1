@@ -3,7 +3,7 @@ function AllEventsPage(props) {
   return (
     <section>
       <h1>Alle Events</h1>
-      <EventList addToCard={props.addToCard}></EventList>
+      <EventList addToCard={props.addToCard} events={props.events}></EventList>
     </section>
   );
 }
