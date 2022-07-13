@@ -6,16 +6,13 @@ import { useState, useEffect } from "react";
 function App() {
   const [inCard, setInCard] = useState(0);
   const [events, setEvents] = useState([]);
-
-  let eventsInCardNew = [];
-
   const [eventsInCard, setEventsInCard] = useState([]);
 
+  let newValueInCard = eventsInCard.length;
   function addToCard(event) {
-    console.log(event);
-    eventsInCardNew.push(event);
-    setEventsInCard(eventsInCardNew);
-    //setInCard(eventsInCard.length);
+    setEventsInCard([...eventsInCard, event]);
+    newValueInCard++;
+    setInCard(newValueInCard);
   }
 
   useEffect(() => {
@@ -24,14 +21,17 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        setEvents(
-          data.sort((a, b) =>
-            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-          )
-        );
+        const groups = data.reduce((groups, event) => {
+          const date = event.date.split("T")[0];
+          if (!groups[date]) {
+            groups[date] = [];
+          }
+          groups[date].push(event);
+          return groups;
+        }, {});
+        setEvents(groups);
       });
   }, []);
-  console.log(events);
   return (
     <Router>
       <Layout inCard={inCard} eventsInCard={eventsInCard}>
