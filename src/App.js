@@ -10,8 +10,10 @@ function App() {
 
   let newValueInCard = eventsInCard.length;
   function addToCard(event) {
-    setEventsInCard([...eventsInCard, event]);
-    newValueInCard++;
+    if (!eventsInCard.some((e) => e._id === event._id)) {
+      setEventsInCard([...eventsInCard, event]);
+      newValueInCard++;
+    }
     setInCard(newValueInCard);
   }
 
@@ -29,6 +31,7 @@ function App() {
           groups[date].push(event);
           return groups;
         }, {});
+        console.log(groups);
         setEvents(groups);
       });
   }, []);

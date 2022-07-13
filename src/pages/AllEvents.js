@@ -4,15 +4,17 @@ function AllEventsPage(props) {
   return (
     <section>
       <h1>Alle Events</h1>
-      {Object.keys(props.events).map((date) => (
-        <EventList
-          key={date}
-          date={date}
-          addToCard={props.addToCard}
-          events={props.events[date]}
-          showButton={showButton}
-        ></EventList>
-      ))}
+      {Object.keys(props.events)
+        .sort()
+        .map((date) => (
+          <EventList
+            key={date}
+            date={date}
+            addToCard={props.addToCard}
+            events={props.events[date]}
+            showButton={showButton}
+          ></EventList>
+        ))}
     </section>
   );
 }
