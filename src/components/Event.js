@@ -46,13 +46,12 @@ function Event(props) {
   return (
     <div>
       <Card className={classes.cardSize}>
-        <CardHeader
-          title={props.event.title}
-          className={classes.title}
-        ></CardHeader>
+        <CardHeader title={props.event.title} className={classes.title}>
+          {props.event.title}
+        </CardHeader>
         <CardMedia
+          className={classes.image}
           component="img"
-          height="300px"
           image={props.event.flyerFront}
         ></CardMedia>
         <CardContent>
