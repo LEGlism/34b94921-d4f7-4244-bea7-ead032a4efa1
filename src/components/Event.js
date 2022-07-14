@@ -10,6 +10,39 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import IconButton from "@mui/material/IconButton";
 
 function Event(props) {
+  let fullDateString;
+  function formatStartTime() {
+    const dateOptions = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    };
+    let startTime;
+    let endTime;
+    if (props.event.startTime === undefined) {
+      startTime = new Date(props.event.date);
+    } else {
+      startTime = new Date(props.event.date);
+
+      endTime = new Date(props.event.endTime);
+    }
+
+    if (props.event.endTime === undefined) {
+      fullDateString =
+        "| At: " + startTime.toLocaleDateString("de-DE", dateOptions);
+    } else {
+      fullDateString =
+        "| Starts: " +
+        startTime.toLocaleDateString("de-DE", dateOptions) +
+        "\n" +
+        "| Ends:" +
+        endTime.toLocaleDateString("de-DE", dateOptions);
+    }
+  }
+  formatStartTime();
   return (
     <div>
       <Card className={classes.cardSize}>
@@ -26,21 +59,24 @@ function Event(props) {
           <Typography gutterBottom variant="h6" component="div">
             <LocationOnIcon></LocationOnIcon> {props.event.venue.name}
           </Typography>
-          //TODO: datum Formatieren
-          <Typography gutterBottom variant="h6" component="div">
-            | Starts: {props.event.startTime}
-          </Typography>
-          <Typography variant="h6" color="text.secondary">
-            | Ends: {props.event.endTime}
+          <Typography
+            gutterBottom
+            variant="h6"
+            component="div"
+            className={classes.makeNewLine}
+          >
+            {fullDateString}
           </Typography>
         </CardContent>
-        <IconButton
-          color="primary"
-          aria-label="add to shopping cart"
-          onClick={() => props.addToCard(props.event)}
-        >
-          <AddShoppingCartIcon />
-        </IconButton>
+        <div className={classes.icon}>
+          <IconButton
+            color="primary"
+            aria-label="add to shopping cart"
+            onClick={() => props.addToCard(props.event)}
+          >
+            <AddShoppingCartIcon />
+          </IconButton>
+        </div>
       </Card>
     </div>
   );

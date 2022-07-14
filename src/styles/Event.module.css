@@ -5,3 +5,11 @@
 .title {
   height: 25%;
 }
+.icon {
+  text-align: right;
+  margin-right: 5%;
+  margin-top: 3%;
+}
+.makeNewLine {
+  white-space: pre-wrap;
+}
