@@ -11,6 +11,21 @@ import IconButton from "@mui/material/IconButton";
 
 function Event(props) {
   let fullDateString;
+  let button;
+  if (props.showButton) {
+    button = (
+      <IconButton
+        color="primary"
+        aria-label="add to shopping cart"
+        onClick={() => props.addToCard(props.event)}
+        disabled={!props.showButton}
+      >
+        <AddShoppingCartIcon />
+      </IconButton>
+    );
+  } else {
+    button = null;
+  }
   function formatStartTime() {
     const dateOptions = {
       year: "numeric",
@@ -67,15 +82,7 @@ function Event(props) {
             {fullDateString}
           </Typography>
         </CardContent>
-        <div className={classes.icon}>
-          <IconButton
-            color="primary"
-            aria-label="add to shopping cart"
-            onClick={() => props.addToCard(props.event)}
-          >
-            <AddShoppingCartIcon />
-          </IconButton>
-        </div>
+        <div className={classes.icon}>{button}</div>
       </Card>
     </div>
   );
