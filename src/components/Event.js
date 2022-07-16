@@ -71,7 +71,9 @@ function Event(props) {
         ></CardMedia>
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
-            <LocationOnIcon></LocationOnIcon> {props.event.venue.name}
+            <a href={props.event.venue.direction} target="_blank">
+              <LocationOnIcon></LocationOnIcon> {props.event.venue.name}
+            </a>
           </Typography>
           <Typography
             gutterBottom
